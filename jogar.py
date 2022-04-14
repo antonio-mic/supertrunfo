@@ -20,15 +20,15 @@ cartasdividi.pop(numdecartas)
 superTrunfo = cartasdividi[0][0]
 print(superTrunfo)
 
-random.shuffle(cartasdividi)
-totaldecartas = int(len(cartasdividi))
-n = metadecartas = int(totaldecartas / 2)
-jogador1 = cartasdividi[0:metadecartas]
-jogador2 = cartasdividi[metadecartas:totaldecartas]
+random.shuffle(cartasdividi)                                   # 
+totaldecartas = int(len(cartasdividi))                         # 
+n = metadecartas = int(totaldecartas / 2)                      #Dividi o total de cartas para os jogadores 
+jogador1 = cartasdividi[0:metadecartas]                        # 
+jogador2 = cartasdividi[metadecartas:totaldecartas]            #            
 
 
 
-partida = random.randint(0,1)
+partida = random.randint(0,1) #Verifica quem vai com
 
 tamanho = (700,500)
 tela = pygame.display.set_mode(tamanho)
@@ -75,45 +75,7 @@ print(salvar)
 
 
 if salvar == "SIM":
-    while True:
-        tela.blit(background,(0,0))
-        tela.blit(nomArquivo,(50,105))
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                exit()
-            elif event.type == pygame.KEYDOWN:
-                teclado = pygame.key.get_pressed()
-                nomedoarquivo = nomedoarquivo + event.unicode
-                nomArquivo = menufonte.render("Codigo do replay: " + nomedoarquivo.upper(),True,(255,255,255))    
-                pygame.display.flip()
-                if teclado[K_BACKSPACE]:
-                    numeroArq = len(nomedoarquivo)
-                    nomeaqr = nomedoarquivo[0:numeroArq - 2]
-                    nomedoarquivo = nomeaqr
-                    nomArquivo = menufonte.render("Codigo do replay: " + nomedoarquivo.upper(),True,(255,255,255))
-                    pygame.display.flip()
-                if teclado[K_RETURN]:
-                    numeroArq = len(nomedoarquivo)
-                    nomeaqr  = nomedoarquivo[0:numeroArq - 1]
-                    nomedoarquivo = nomeaqr
-                    nomedoarquivo = nomedoarquivo.upper()
-                    arq = open("arquivosreplay/"+ nomedoarquivo + ".txt","ab")
-                    pickle.dump(cartasdividi,arq)
-                    arq.close()
-                    hora = datetime.now()
-                    arqreplay = open("arquivosreplay/nomesreplay.txt","a")
-                    arqreplay.write("%s%s%s%s" %(nomedoarquivo," ",hora," "))
-                    arqreplay.close()
-                    arq = open("arquivosreplay/"+nomedoarquivo+"1.txt","a")
-                    arq.write(str(partida))
-                    arq.write(" ")
-                    arq.close()
-
-                    import funpygamesingle
-                    funpygamesingle.jogar(jogador1,jogador2,partida,superTrunfo,nome1,nome2,nomedoarquivo)
-        pygame.display.flip()
-    
-
+    print("")
 else:
     del nomedoarquivo
     import funpygamesingle
